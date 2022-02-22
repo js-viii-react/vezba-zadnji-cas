@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import CinemaList from "./components/CinemaList";
+import MovieList from "./components/MovieList";
+import MovieListWithoutContext from "./components/MovieListWithoutContext";
+import Prices from "./components/Prices";
+import PricesWIthoutContext from "./components/PricesWIthoutContext";
+import CinemaProvider from "./context/CinemaProvider";
+import MovieProvider from "./context/MovieProvider";
+
+const initialState = [
+  {
+    name: "Harry Potter",
+    price: "700",
+    id: 0,
+  },
+  {
+    name: "Lotr",
+    price: "900",
+    id: 1,
+  },
+  {
+    name: "Batman",
+    price: "500",
+    id: 2,
+  },
+];
 
 function App() {
+  const [state, setState] = useState(initialState);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CinemaProvider>
+        <CinemaList />
+        <MovieProvider>
+          <MovieList />
+          <Prices />
+        </MovieProvider>
+      </CinemaProvider>
+      <br />
+      <br />
+      <strong> Without context, only using props:</strong>
+      <br />
+      <MovieListWithoutContext moviescopy={state} />
+      <PricesWIthoutContext moviescopy={state} />
     </div>
   );
 }
