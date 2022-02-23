@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CinemaContext } from "../context/CinemaProvider";
 import { MovieContext } from "../context/MovieProvider";
 
 const Prices = () => {
   const { movies } = useContext(MovieContext);
   const { cinema } = useContext(CinemaContext);
+
   return (
     <div>
       Prices:

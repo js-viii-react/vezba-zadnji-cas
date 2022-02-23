@@ -34,7 +34,6 @@ function App() {
         <CinemaList />
         <MovieProvider>
           <MovieList />
-          <Prices />
         </MovieProvider>
       </CinemaProvider>
       <br />
